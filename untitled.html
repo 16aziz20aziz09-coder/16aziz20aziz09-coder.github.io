@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Моё портфолио</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, #6366f1, #22c55e, #eab308, #ec4899, #38bdf8);
+      background-size: 1000% 1000%;
+      animation: gradientShift 15s ease infinite;
+      color: #e5e7eb;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .role {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      display: block;
+      background: #334155;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #6366f1;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #4f46e5;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Новый стиль для показа канала */
+    .telegram {
+      text-align: center;
+      margin-top: 15px;
+      padding: 10px;
+      background: #334155;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .telegram a {
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .telegram a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Портфолио -->
+  <div class="card" id="portfolio">
+    <img class=<>
+    <h1>Салам всем достойным мoё имя Мухаммадазиз</h1>
+    <div class="role">Веб-разработчик</div>
+    <button onclick="showCalculator()">Калькулятор</button>
+    <button onclick="showAI()">ИИ помощник</button>
+    <button onclick="showTelegram()">Связаться со мной</button>
+  </div>
+
+  <div class="card">
+    <h2>Обо мне</h2>
+    <p>
+      Я начинающий разработчик. Учусь создавать сайты для телефонов
+      с помощью HTML, CSS и JavaScript.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Навыки</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript (основы)</li>
+    </ul>
+  </div>
+
+  <!-- ИИ помощник -->
+  <div class="card hidden" id="ai">
+    <h2>ИИ помощник</h2>
+    <p>Задай простой вопрос:</p>
+    <input type="text" id="aiInput" placeholder="Например: 2+2 или привет">
+    <button onclick="askAI()">Спросить</button>
+    <p id="aiAnswer">Ответ:</p>
+    <button onclick="backToPortfolioFromAI()">← Назад</button>
+  </div>
+
+  <!-- Калькулятор -->
+  <div class="card hidden" id="calculator">
+    <h2>Калькулятор</h2>
+    <input type="number" id="num1" placeholder="Первое число">
+    <input type="number" id="num2" placeholder="Второе число">
+
+    <button onclick="calc('+')">+</button>
+    <button onclick="calc('-')">−</button>
+    <button onclick="calc('*')">×</button>
+    <button onclick="calc('/')">÷</button>
+
+    <h3 id="result">Результат:</h3>
+    <button onclick="backToPortfolio()">← Назад</button>
+  </div>
+
+  <!-- Блок с Telegram каналом -->
+  <div class="card hidden" id="telegramCard">
+    <div class="telegram">
+      Мой Telegram канал: <a href="https://t.me/Insta_15k" target="_blank">@Insta_15k</a>
+    </div>
+    <button onclick="backToPortfolioFromTelegram()">← Назад</button>
+  </div>
+</div>
+
+<script>
+  function showCalculator() {
+    document.getElementById('portfolio').classList.add('hidden');
+    document.getElementById('calculator').classList.remove('hidden');
+  }
+
+  function backToPortfolio() {
+    document.getElementById('calculator').classList.add('hidden');
+    document.getElementById('portfolio').classList.remove('hidden');
+  }
+
+  function calc(op) {
+    let a = Number(document.getElementById('num1').value);
+    let b = Number(document.getElementById('num2').value);
+    let res = 0;
+
+    if (op === '+') res = a + b;
+    if (op === '-') res = a - b;
+    if (op === '*') res = a * b;
+    if (op === '/') res = b !== 0 ? a / b : 'не скажу';
+
+    document.getElementById('result').innerText = 'Результат: ' + res;
+  }
+
+  function showAI() {
+    document.getElementById('portfolio').classList.add('hidden');
+    document.getElementById('ai').classList.remove('hidden');
+  }
+
+  function backToPortfolioFromAI() {
+    document.getElementById('ai').classList.add('hidden');
+    document.getElementById('portfolio').classList.remove('hidden');
+  }
+
+  function askAI() {
+    const q = document.getElementById('aiInput').value.toLowerCase();
+    let a = '';
+
+    if (!q) {
+      a = 'Напиши вопрос 🙂';
+    } else if (q.includes('привет')) {
+      a = 'Привет! Я ИИ помощник этого сайта';
+    } else if (q.includes('как тебя зовут')) {
+      a = 'Я простой ИИ, сделанный на JavaScript';
+    } else if (q.includes('кто ты')) {
+      a = 'Я ИИ помощник в твоём портфолио';
+    } else {
+      a = 'я ненамерен отвичать на этот вопрос!';
+    }
+
+    document.getElementById('aiAnswer').innerText = 'Ответ: ' + a;
+  }
+
+  function showTelegram() {
+    document.getElementById('portfolio').classList.add('hidden');
+    document.getElementById('telegramCard').classList.remove('hidden');
+  }
+
+  function backToPortfolioFromTelegram() {
+    document.getElementById('telegramCard').classList.add('hidden');
+    document.getElementById('portfolio').classList.remove('hidden');
+  }
+</script>
+</body>
+</html>
